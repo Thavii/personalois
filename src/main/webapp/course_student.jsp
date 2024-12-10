@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Course Inserted</title>
+    <title>Courses</title>
 </head>
 <body>
 
@@ -13,7 +13,8 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Course Inserted</h1>
+<h1>Table of All Course-Student relations
+</h1>
 
     <%
 
@@ -21,7 +22,7 @@ Connection c = null;
 
 try {
 
-        String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
+	String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
         String username = "postgres.ccrgdkpdjdccgocojdtc";
         String password = "vmR4T7ylGljsgSLv"; // Your password
         Class.forName("org.postgresql.Driver");
@@ -34,22 +35,41 @@ try {
     		ResultSet.CONCUR_READ_ONLY
     	);
 
-    // WRITE DATA
+    // READ DATA
 
-        selectStatement.executeUpdate(
-		   "INSERT INTO course (course_name,teacher_id,course_code) VALUES      ('"
+    ResultSet resultSet = selectStatement.executeQuery(
+		   		"Select * from student_course;"
+		   );
 
-            + request.getParameter("course_name")
-		    +"' ,'"
-		    + request.getParameter("lecturer")
-		    +"' ,'"
-            + request.getParameter("course_code")
-            + "'                                                      );"
-		);
+        resultSet.beforeFirst();
 
+        %> <table border=1>
+    <tr>
+        <td bgcolor=eeeeee><b>course_id</b></td>
+        <td bgcolor=eeeeee><b>student_id</b></td>
 
+    </tr>
+    <%
 
+        while (resultSet.next()){
+    %>
+    <tr>
+        <td>
+            <%= resultSet.getString("course_id") %>
+        </td>
+        <td>
+            <%= resultSet.getString("student_id") %>
+        </td>
+    </tr>
+    <%
+        }
 
+    %> </table>
+
+<br>
+<a href="index.jsp"><b>Back to the Main Menu</b></a>
+
+    <%
 
         selectStatement.close();
         c.commit();
@@ -62,8 +82,6 @@ try {
 }
 
 %>
-<br>
-<a href="index.jsp"><b>Back to the Main Menu</b></a>
 
 <body>
 </html>

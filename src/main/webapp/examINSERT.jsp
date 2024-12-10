@@ -13,20 +13,37 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Please Insert a New Course!</h1>
+<h1>Please Insert a New Homework!</h1>
 
-<form action="http://localhost:8080/personalois_war_exploded/courseINSERTed.jsp" method="get">
+<form action="http://localhost:8080/personalois_war_exploded/homeworkINSERTed.jsp" method="get">
     <table>
+
         <tr>
-            <td>Course Name:
-            <td><input type="text" name="course_name"></td>
+            <td>Homework Name:
+            <td><input type="text" name="homework_name"></td>
+        </tr>
+        <tr>
+            <td>Homework Deadline:
+            <td><input type="text" name="homework_deadline" VALUE="2025-12-30"></td>
+        </tr>
+        <tr>
+            <td>Homework Weight:
+            <td><input type="text" name="homework_weight"></td>
+        </tr>
+        <tr>
+            <td>Course ID:
+            <td><input type="text" name="course_id"></td>
         </tr>
 
-       <tr>
-            <td>Course Code:
-            <td><input type="text" name="course_code"></td>
-       </tr>
+ <%--
         <tr>
+            <td>Course start date:
+            <td><input type="text" name="start_date" value="2024-12-12"></td>
+        </tr>   --%>
+
+
+
+<%--       <tr>
            <td>Lecturer
            <td>
                <select id="lecturerSelect" name="lecturer">
@@ -53,16 +70,16 @@
                            // READ DATA
 
                            ResultSet resultSet = selectStatement.executeQuery(
-                                   "Select * from teacher;"
+                                   "Select * from course;"
                            );
 
                            resultSet.beforeFirst();
 
                            while (resultSet.next()){
                    %>
-                   <option value="<%= resultSet.getString("teacher_id") %>">
-                       <%= resultSet.getString("first_name") %>
-                       <%= resultSet.getString("last_name") %>
+                   <option value="<%= resultSet.getString("id") %>">
+                       <%= resultSet.getString("course_name") %>
+                       <%= resultSet.getString("course_code") %>
                    </option>
                    <%
                            }
@@ -82,7 +99,7 @@
            </td>
        </tr>
 
-
+        --%>
 
 
    </table>

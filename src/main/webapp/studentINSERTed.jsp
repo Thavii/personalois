@@ -37,18 +37,15 @@ try {
     // WRITE DATA
 
         selectStatement.executeUpdate(
-		   "INSERT INTO course (course_name,teacher_id,course_code) VALUES      ('"
+		   "INSERT INTO student (first_name,last_name,student_code) VALUES      ('"
 
-            + request.getParameter("course_name")
-		    +"' ,'"
-		    + request.getParameter("lecturer")
-		    +"' ,'"
-            + request.getParameter("course_code")
-            + "'                                                      );"
+          + request.getParameter("first_name")
+		  +"' ,'"
+		  + request.getParameter("last_name")
+		  +"' ,'"
+          + request.getParameter("student_code")
+          + "'                                                      );"
 		);
-
-
-
 
 
         selectStatement.close();

@@ -37,14 +37,16 @@ try {
     // WRITE DATA
 
         selectStatement.executeUpdate(
-		   "INSERT INTO course (course_name,teacher_id,course_code) VALUES      ('"
+		   "INSERT INTO homework (homework_name,homework_deadline,homework_weight,course_id) VALUES      ('"
 
-            + request.getParameter("course_name")
-		    +"' ,'"
-		    + request.getParameter("lecturer")
-		    +"' ,'"
-            + request.getParameter("course_code")
-            + "'                                                      );"
+          + request.getParameter("homework_name")
+		  +"' ,'"
+		  + request.getParameter("homework_deadline")
+		  +"' ,'"
+		  + request.getParameter("homework_weight")
+		  +"' ,'"
+          + request.getParameter("course_id")
+          + "'                                                      );"
 		);
 
 

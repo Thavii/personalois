@@ -47,7 +47,8 @@ try {
     <tr>
         <td bgcolor=eeeeee><b>homework_name</b></td>
         <td bgcolor=eeeeee><b>homework_deadline</b></td>
-        <td bgcolor=eeeeee><b>homework_deadline</b></td>
+        <td bgcolor=eeeeee><b>homework_weight</b></td>
+        <td bgcolor=eeeeee><b>course_id</b></td>
 
     </tr>
     <%
@@ -62,8 +63,10 @@ try {
             <%= resultSet.getString("homework_deadline") %>
         </td>
         <td>
-            <%= resultSet.getString("homework_deadline") %>
-
+            <%= resultSet.getString("homework_weight") %>
+        </td>
+        <td>
+            <%= resultSet.getString("course_id") %>
         </td>
     </tr>
     <%
@@ -72,7 +75,7 @@ try {
     %> </table>
 
 <br>
-<a href="Index.html"><b>Back to the Main Menu</b></a>
+<a href="index.jsp"><b>Back to the Main Menu</b></a>
 
     <%
 

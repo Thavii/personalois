@@ -75,7 +75,7 @@ try {
     %> </table>
 
 <br>
-<a href="Index.html"><b>Back to the Main Menu</b></a>
+<a href="index.jsp"><b>Back to the Main Menu</b></a>
 
     <%
 

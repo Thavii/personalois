@@ -13,7 +13,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Course Inserted</h1>
+<h1>Teacher Inserted</h1>
 
     <%
 
@@ -37,19 +37,13 @@ try {
     // WRITE DATA
 
         selectStatement.executeUpdate(
-		   "INSERT INTO course (course_name,teacher_id,course_code) VALUES      ('"
+		   "INSERT INTO teacher (first_name,last_name) VALUES      ('"
 
-            + request.getParameter("course_name")
-		    +"' ,'"
-		    + request.getParameter("lecturer")
-		    +"' ,'"
-            + request.getParameter("course_code")
-            + "'                                                      );"
+          + request.getParameter("first_name")
+		  +"' ,'"
+		  + request.getParameter("last_name")
+          + "'                                                      );"
 		);
-
-
-
-
 
         selectStatement.close();
         c.commit();

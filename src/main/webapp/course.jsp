@@ -48,6 +48,7 @@ try {
         <td bgcolor=eeeeee><b>course_id</b></td>
         <td bgcolor=eeeeee><b>course_name</b></td>
         <td bgcolor=eeeeee><b>course_code</b></td>
+        <td bgcolor=eeeeee><b>teacher_id</b></td>
 
     </tr>
     <%
@@ -63,8 +64,14 @@ try {
         </td>
         <td>
             <%= resultSet.getString("course_code") %>
-
         </td>
+        <td>
+            <%= resultSet.getString("teacher_id") %>
+        </td>
+
+
+
+
     </tr>
     <%
         }
@@ -72,7 +79,7 @@ try {
     %> </table>
 
 <br>
-<a href="Index.html"><b>Back to the Main Menu</b></a>
+<a href="index.jsp"><b>Back to the Main Menu</b></a>
 
     <%
 
