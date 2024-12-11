@@ -13,7 +13,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Table of All Homeworks
+<h1>Table of All Course-Student relations
 </h1>
 
     <%
@@ -37,25 +37,28 @@ try {
 
     // READ DATA
 
-ResultSet resultSet = selectStatement.executeQuery(
-    "SELECT homework.homework_name, " +
-    "       homework.homework_deadline, " +
-    "       homework.homework_weight, " +
-    "       course.course_name " +
-    "FROM homework " +
-    "JOIN course ON homework.course_id = course.course_id " +
-    "ORDER BY homework.homework_deadline;"
-);
-
+    ResultSet resultSet = selectStatement.executeQuery(
+		   		"SELECT \n" +
+                "    course.course_name,\n" +
+                "    student.first_name,\n" +
+                "    student.last_name\n" +
+                "FROM \n" +
+                "    student\n" +
+                "JOIN \n" +
+                "    student_course ON student.student_id = student_course.student_id\n" +
+                "JOIN \n" +
+                "    course ON student_course.course_id = course.course_id\n" +
+                "ORDER BY \n" +
+                "    course.course_name;"
+		   );
 
         resultSet.beforeFirst();
 
         %> <table border=1>
     <tr>
-        <td bgcolor=eeeeee><b>homework_name</b></td>
-        <td bgcolor=eeeeee><b>homework_deadline</b></td>
-        <td bgcolor=eeeeee><b>homework_weight</b></td>
-        <td bgcolor=eeeeee><b>course_id</b></td>
+        <td bgcolor=eeeeee><b>course_name</b></td>
+        <td bgcolor=eeeeee><b>first_name</b></td>
+        <td bgcolor=eeeeee><b>last_name</b></td>
 
     </tr>
     <%
@@ -64,16 +67,13 @@ ResultSet resultSet = selectStatement.executeQuery(
     %>
     <tr>
         <td>
-            <%= resultSet.getString("homework_name") %>
-        </td>
-        <td>
-            <%= resultSet.getString("homework_deadline") %>
-        </td>
-        <td>
-            <%= resultSet.getString("homework_weight") %>
-        </td>
-        <td>
             <%= resultSet.getString("course_name") %>
+        </td>
+        <td>
+            <%= resultSet.getString("first_name") %>
+        </td>
+        <td>
+            <%= resultSet.getString("last_name") %>
         </td>
     </tr>
     <%

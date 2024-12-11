@@ -16,93 +16,80 @@
 <h1>Please Insert a New Homework!</h1>
 
 <form action="http://localhost:8080/personalois_war_exploded/homeworkINSERTed.jsp" method="get">
+
     <table>
 
         <tr>
-            <td>Homework Name:
+            <td>Homework Name:</td>
             <td><input type="text" name="homework_name"></td>
         </tr>
         <tr>
-            <td>Homework Deadline:
+            <td>Homework Deadline:</td>
             <td><input type="text" name="homework_deadline" VALUE="2025-12-30"></td>
         </tr>
         <tr>
-            <td>Homework Weight:
+            <td>Homework Weight:</td>
             <td><input type="text" name="homework_weight"></td>
         </tr>
         <tr>
-            <td>Course ID:
-            <td><input type="text" name="course_id"></td>
+            <td>Course :</td>
+            <td>
+                <select id="courseSelect" name="course">
+
+                    <%
+
+                        Connection c = null;
+
+                        try {
+
+                            String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
+                            String username = "postgres.ccrgdkpdjdccgocojdtc";
+                            String password = "vmR4T7ylGljsgSLv"; // Your password
+                            Class.forName("org.postgresql.Driver");
+
+                            c = DriverManager.getConnection(url, username, password);
+                            c.setAutoCommit(false);
+
+                            Statement selectStatement = c.createStatement(
+                                    ResultSet.TYPE_SCROLL_SENSITIVE,
+                                    ResultSet.CONCUR_READ_ONLY
+                            );
+
+                            // READ DATA
+
+                            ResultSet resultSet = selectStatement.executeQuery(
+                                    "Select * from course;"
+                            );
+
+                            resultSet.beforeFirst();
+
+                            while (resultSet.next()){
+                    %>
+                    <option value="<%= resultSet.getString("course_id") %>">
+                        <%= resultSet.getString("course_name") %>
+                    </option>
+                    <%
+                            }
+
+                            selectStatement.close();
+                            c.commit();
+                            c.close();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.err.println(e.getClass().getName() +": " + e.getMessage());
+                            System.exit(0);
+                        }
+
+                    %>
+                </select>
+            </td>
         </tr>
-
- <%--
-        <tr>
-            <td>Course start date:
-            <td><input type="text" name="start_date" value="2024-12-12"></td>
-        </tr>   --%>
-
-
-
-<%--       <tr>
-           <td>Lecturer
-           <td>
-               <select id="lecturerSelect" name="lecturer">
-
-                   <%
-
-                       Connection c = null;
-
-                       try {
-
-                           String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
-                           String username = "postgres.ccrgdkpdjdccgocojdtc";
-                           String password = "vmR4T7ylGljsgSLv"; // Your password
-                           Class.forName("org.postgresql.Driver");
-
-                           c = DriverManager.getConnection(url, username, password);
-                           c.setAutoCommit(false);
-
-                           Statement selectStatement = c.createStatement(
-                                   ResultSet.TYPE_SCROLL_SENSITIVE,
-                                   ResultSet.CONCUR_READ_ONLY
-                           );
-
-                           // READ DATA
-
-                           ResultSet resultSet = selectStatement.executeQuery(
-                                   "Select * from course;"
-                           );
-
-                           resultSet.beforeFirst();
-
-                           while (resultSet.next()){
-                   %>
-                   <option value="<%= resultSet.getString("id") %>">
-                       <%= resultSet.getString("course_name") %>
-                       <%= resultSet.getString("course_code") %>
-                   </option>
-                   <%
-                           }
-
-                           selectStatement.close();
-                           c.commit();
-                           c.close();
-
-                       } catch (Exception e) {
-                           e.printStackTrace();
-                           System.err.println(e.getClass().getName() +": " + e.getMessage());
-                           System.exit(0);
-                       }
-
-                   %>
-               </select>
-           </td>
-       </tr>
-
-        --%>
 
 
    </table>
+
+
    <br>
    <input type="submit" value="Submit">
 </form>

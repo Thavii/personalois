@@ -45,7 +45,7 @@ try {
 		  +"' ,'"
 		  + request.getParameter("homework_weight")
 		  +"' ,'"
-          + request.getParameter("course_id")
+          + request.getParameter("course")
           + "'                                                      );"
 		);
 
