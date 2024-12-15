@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Courses</title>
+    <title>Course-Student Relations</title>
 </head>
 <body>
 
@@ -13,90 +13,85 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Table of All Course-Student relations
-</h1>
+<h1>Table of All Course-Student Relations</h1>
 
-    <%
+<%
+    Connection c = null;
 
-Connection c = null;
-
-try {
-
-	String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
+    try {
+        String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
         String username = "postgres.ccrgdkpdjdccgocojdtc";
         String password = "vmR4T7ylGljsgSLv"; // Your password
         Class.forName("org.postgresql.Driver");
 
-    c = DriverManager.getConnection(url, username, password);
-    c.setAutoCommit(false);
+        c = DriverManager.getConnection(url, username, password);
+        c.setAutoCommit(false);
 
-    Statement selectStatement = c.createStatement(
-    		ResultSet.TYPE_SCROLL_SENSITIVE,
-    		ResultSet.CONCUR_READ_ONLY
-    	);
+        Statement selectStatement = c.createStatement(
+                ResultSet.TYPE_SCROLL_SENSITIVE,
+                ResultSet.CONCUR_READ_ONLY
+        );
 
-    // READ DATA
-
-    ResultSet resultSet = selectStatement.executeQuery(
-		   		"SELECT \n" +
-                "    course.course_name,\n" +
-                "    student.first_name,\n" +
-                "    student.last_name\n" +
-                "FROM \n" +
-                "    student\n" +
-                "JOIN \n" +
-                "    student_course ON student.student_id = student_course.student_id\n" +
-                "JOIN \n" +
-                "    course ON student_course.course_id = course.course_id\n" +
-                "ORDER BY \n" +
-                "    course.course_name;"
-		   );
+        // READ DATA
+        ResultSet resultSet = selectStatement.executeQuery(
+                "SELECT " +
+                        "    course.course_id, " +
+                        "    course.course_name, " +
+                        "    student.student_id, " +
+                        "    student.first_name, " +
+                        "    student.last_name " +
+                        "FROM " +
+                        "    student " +
+                        "JOIN " +
+                        "    student_course ON student.student_id = student_course.student_id " +
+                        "JOIN " +
+                        "    course ON student_course.course_id = course.course_id " +
+                        "ORDER BY " +
+                        "    student.last_name;"
+        );
 
         resultSet.beforeFirst();
-
-        %> <table border=1>
+%>
+<table border="1">
     <tr>
-        <td bgcolor=eeeeee><b>course_name</b></td>
-        <td bgcolor=eeeeee><b>first_name</b></td>
-        <td bgcolor=eeeeee><b>last_name</b></td>
-
+        <td bgcolor="eeeeee"><b>Course Name</b></td>
+        <td bgcolor="eeeeee"><b>First Name</b></td>
+        <td bgcolor="eeeeee"><b>Last Name</b></td>
+        <td bgcolor="eeeeee"><b>Action</b></td>
     </tr>
     <%
-
-        while (resultSet.next()){
+        while (resultSet.next()) {
     %>
     <tr>
+        <td><%= resultSet.getString("course_name") %></td>
+        <td><%= resultSet.getString("first_name") %></td>
+        <td><%= resultSet.getString("last_name") %></td>
         <td>
-            <%= resultSet.getString("course_name") %>
-        </td>
-        <td>
-            <%= resultSet.getString("first_name") %>
-        </td>
-        <td>
-            <%= resultSet.getString("last_name") %>
+            <form action="deleteCourseStudent.jsp" method="post" style="display:inline;">
+                <input type="hidden" name="course_id" value="<%= resultSet.getString("course_id") %>" />
+                <input type="hidden" name="student_id" value="<%= resultSet.getString("student_id") %>" />
+                <input type="submit" value="Delete" />
+            </form>
         </td>
     </tr>
     <%
         }
-
-    %> </table>
+    %>
+</table>
 
 <br>
 <a href="index.jsp"><b>Back to the Main Menu</b></a>
 
-    <%
-
+<%
         selectStatement.close();
         c.commit();
         c.close();
-
-} catch (Exception e) {
-	e.printStackTrace();
-    System.err.println(e.getClass().getName() +": " + e.getMessage());
-    System.exit(0);
-}
-
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        System.exit(0);
+    }
 %>
 
-<body>
+</body>
 </html>

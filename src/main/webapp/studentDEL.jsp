@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Homeworks</title>
+    <title>Courses</title>
 </head>
 <body>
 
@@ -13,10 +13,11 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Table of All Homeworks</h1>
+<h1>Table of All Students</h1>
 
 <%
     Connection c = null;
+
     try {
         String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
         String username = "postgres.ccrgdkpdjdccgocojdtc";
@@ -32,42 +33,29 @@
         );
 
         // READ DATA
-        ResultSet resultSet = selectStatement.executeQuery(
-                "SELECT homework.homework_id, " +
-                        "       homework.homework_name, " +
-                        "       homework.homework_deadline, " +
-                        "       homework.homework_weight, " +
-                        "       course.course_name " +
-                        "FROM homework " +
-                        "JOIN course ON homework.course_id = course.course_id " +
-                        "ORDER BY homework.homework_deadline;"
-        );
+        ResultSet resultSet = selectStatement.executeQuery("SELECT * FROM student;");
 
         resultSet.beforeFirst();
-        int counter = 1; // Initialize the counter for numbering rows
 %>
-
 <table border="1">
     <tr>
-        <td bgcolor="eeeeee"><b>No.</b></td>
-        <td bgcolor="eeeeee"><b>Homework Name</b></td>
-        <td bgcolor="eeeeee"><b>Deadline</b></td>
-        <td bgcolor="eeeeee"><b>Points</b></td>
-        <td bgcolor="eeeeee"><b>Course Name</b></td>
+        <td bgcolor="eeeeee"><b>student_id</b></td>
+        <td bgcolor="eeeeee"><b>first_name</b></td>
+        <td bgcolor="eeeeee"><b>last_name</b></td>
+        <td bgcolor="eeeeee"><b>student_code</b></td>
         <td bgcolor="eeeeee"><b>Action</b></td>
     </tr>
     <%
         while (resultSet.next()) {
     %>
     <tr>
-        <td><%= counter++ %></td>
-        <td><%= resultSet.getString("homework_name") %></td>
-        <td><%= resultSet.getString("homework_deadline") %></td>
-        <td><%= resultSet.getString("homework_weight") %></td>
-        <td><%= resultSet.getString("course_name") %></td>
+        <td><%= resultSet.getString("student_id") %></td>
+        <td><%= resultSet.getString("first_name") %></td>
+        <td><%= resultSet.getString("last_name") %></td>
+        <td><%= resultSet.getString("student_code") %></td>
         <td>
-            <form action="deleteHomework.jsp" method="post" style="display:inline;">
-                <input type="hidden" name="homework_id" value="<%= resultSet.getString("homework_id") %>" />
+            <form action="deleteStudent.jsp" method="post" style="display:inline;">
+                <input type="hidden" name="student_id" value="<%= resultSet.getString("student_id") %>" />
                 <input type="submit" value="Delete" />
             </form>
         </td>

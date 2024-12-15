@@ -46,8 +46,9 @@
         <li><a href="homework.jsp">Homework</a>
             <br><br>Here you can see all the inserted Lecturers.
         <li><a href="teacher.jsp">Lecturer</a>
-            <br><br>Here you can see all the inserted Students.
-        <li><a href="student.jsp">Student</a>
+            <br><br>Here you can see all the inserted Students and delete them if needed.
+            <br> To delete a student the course-student relationship has to be deleted before
+        <li><a href="studentDEL.jsp">Student</a>
 <%--        <br><br>Here you can see all the inserted Exams.
         <li><a href="exam.jsp">Exam</a> --%>
     </ul>
@@ -73,10 +74,10 @@
     <br>
     <h3>More complex useful data combinations</h3>
     <ul>
-            Here you can see who studies on witch course - yes just stident_id and course_id :)
-        <li><a href="course_student.jsp">Course Students</a>
-            <br><br>Here you can see who studies on witch course.
-        <li><a href="course_student2.jsp">Course Students 2</a>
+        Here you can see who studies on witch course and delete a relation if needed.
+        <li><a href="course_student2.jsp">Course Students</a>
+            <br><br>Here you can see what are MY homework deadlines.
+        <li><a href="homeworkASK.jsp">My homeworks</a>
 
     </ul>
 

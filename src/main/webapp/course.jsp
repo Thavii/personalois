@@ -13,87 +13,79 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Table of All Courses
-</h1>
+<h1>Table of All Courses</h1>
 
-    <%
+<%
 
-Connection c = null;
+    Connection c = null;
 
-try {
+    try {
 
-	String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
+        String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
         String username = "postgres.ccrgdkpdjdccgocojdtc";
-        String password = "vmR4T7ylGljsgSLv"; // Your password
+        String password = "vmR4T7ylGljsgSLv";
         Class.forName("org.postgresql.Driver");
 
-    c = DriverManager.getConnection(url, username, password);
-    c.setAutoCommit(false);
+        c = DriverManager.getConnection(url, username, password);
+        c.setAutoCommit(false);
 
-    Statement selectStatement = c.createStatement(
-    		ResultSet.TYPE_SCROLL_SENSITIVE,
-    		ResultSet.CONCUR_READ_ONLY
-    	);
+        Statement selectStatement = c.createStatement(
+                ResultSet.TYPE_SCROLL_SENSITIVE,
+                ResultSet.CONCUR_READ_ONLY
+        );
 
-    // READ DATA
-
-    ResultSet resultSet = selectStatement.executeQuery(
-		   		"Select * from course;"
-		   );
+        ResultSet resultSet = selectStatement.executeQuery(
+                "SELECT course.course_id, course.course_name, course.course_code, " +
+                        "teacher.first_name, teacher.last_name " +
+                        "FROM course " +
+                        "LEFT JOIN teacher ON course.teacher_id = teacher.teacher_id;"
+        );
 
         resultSet.beforeFirst();
 
-        %> <table border=1>
+%>
+<table border=1>
     <tr>
-        <td bgcolor=eeeeee><b>course_id</b></td>
-        <td bgcolor=eeeeee><b>course_name</b></td>
-        <td bgcolor=eeeeee><b>course_code</b></td>
-        <td bgcolor=eeeeee><b>teacher_id</b></td>
-
+        <td bgcolor=eeeeee><b>Course ID</b></td>
+        <td bgcolor=eeeeee><b>Course Name</b></td>
+        <td bgcolor=eeeeee><b>Course Code</b></td>
+        <td bgcolor=eeeeee><b>Lecturer First Name</b></td>
+        <td bgcolor=eeeeee><b>Lecturer Last Name</b></td>
     </tr>
     <%
 
-        while (resultSet.next()){
+        while (resultSet.next()) {
     %>
     <tr>
-        <td>
-            <%= resultSet.getString("course_id") %>
-        </td>
-        <td>
-            <%= resultSet.getString("course_name") %>
-        </td>
-        <td>
-            <%= resultSet.getString("course_code") %>
-        </td>
-        <td>
-            <%= resultSet.getString("teacher_id") %>
-        </td>
-
-
-
-
+        <td><%= resultSet.getString("course_id") %></td>
+        <td><%= resultSet.getString("course_name") %></td>
+        <td><%= resultSet.getString("course_code") %></td>
+        <td><%= resultSet.getString("first_name") != null ? resultSet.getString("first_name") : "N/A" %></td>
+        <td><%= resultSet.getString("last_name") != null ? resultSet.getString("last_name") : "N/A" %></td>
     </tr>
     <%
         }
 
-    %> </table>
+    %>
+</table>
 
 <br>
 <a href="index.jsp"><b>Back to the Main Menu</b></a>
 
-    <%
+<%
 
         selectStatement.close();
         c.commit();
         c.close();
 
-} catch (Exception e) {
-	e.printStackTrace();
-    System.err.println(e.getClass().getName() +": " + e.getMessage());
-    System.exit(0);
-}
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        System.exit(0);
+    }
 
 %>
 
-<body>
+</body>
 </html>
+

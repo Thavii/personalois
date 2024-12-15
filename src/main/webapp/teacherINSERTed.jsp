@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Course Inserted</title>
+    <title>Lecturer Inserted</title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Teacher Inserted</h1>
+<h1>Lecturer Inserted</h1>
 
     <%
 
