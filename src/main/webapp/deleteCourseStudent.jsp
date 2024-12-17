@@ -6,8 +6,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <title>Delete Course-Student Relation</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
+<table>
+  <tr>
+    <td>
 <%
   String courseId = request.getParameter("course_id");
   String studentId = request.getParameter("student_id");
@@ -51,5 +55,8 @@
 
 <br>
 <a href="course_student2.jsp"><b>Back to Course-Student Relations</b></a>
+</td>
+</tr>
+</table>
 </body>
 </html>

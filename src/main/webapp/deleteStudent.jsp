@@ -6,8 +6,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Delete Student</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
+<table>
+    <tr>
+        <td>
 <%
     String studentId = request.getParameter("student_id");
 
@@ -46,5 +50,8 @@
 
 <br>
 <a href="studentDEL.jsp"><b>Back to Students</b></a>
+</td>
+</tr>
+</table>
 </body>
 </html>

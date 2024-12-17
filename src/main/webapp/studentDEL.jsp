@@ -4,10 +4,13 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Courses</title>
+    <title>Students</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
-
+<table>
+    <tr>
+        <td>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
@@ -21,7 +24,7 @@
     try {
         String url = "jdbc:postgresql://aws-0-eu-central-1.pooler.supabase.com:6543/postgres?prepareThreshold=0";
         String username = "postgres.ccrgdkpdjdccgocojdtc";
-        String password = "vmR4T7ylGljsgSLv"; // Your password
+        String password = "vmR4T7ylGljsgSLv";
         Class.forName("org.postgresql.Driver");
 
         c = DriverManager.getConnection(url, username, password);
@@ -32,27 +35,27 @@
                 ResultSet.CONCUR_READ_ONLY
         );
 
-        // READ DATA
         ResultSet resultSet = selectStatement.executeQuery("SELECT * FROM student;");
 
         resultSet.beforeFirst();
+        int rowNumber = 1; // Initialize the row counter
 %>
 <table border="1">
     <tr>
-        <td bgcolor="eeeeee"><b>student_id</b></td>
-        <td bgcolor="eeeeee"><b>first_name</b></td>
-        <td bgcolor="eeeeee"><b>last_name</b></td>
-        <td bgcolor="eeeeee"><b>student_code</b></td>
+        <td bgcolor="eeeeee"><b>No.</b></td>
+        <td bgcolor="eeeeee"><b>Student Code</b></td>
+        <td bgcolor="eeeeee"><b>First Name</b></td>
+        <td bgcolor="eeeeee"><b>Last Name</b></td>
         <td bgcolor="eeeeee"><b>Action</b></td>
     </tr>
     <%
         while (resultSet.next()) {
     %>
     <tr>
-        <td><%= resultSet.getString("student_id") %></td>
+        <td><%= rowNumber++ %></td>
+        <td><%= resultSet.getString("student_code") %></td>
         <td><%= resultSet.getString("first_name") %></td>
         <td><%= resultSet.getString("last_name") %></td>
-        <td><%= resultSet.getString("student_code") %></td>
         <td>
             <form action="deleteStudent.jsp" method="post" style="display:inline;">
                 <input type="hidden" name="student_id" value="<%= resultSet.getString("student_id") %>" />
@@ -78,6 +81,8 @@
         System.exit(0);
     }
 %>
-
+</td>
+</tr>
+</table>
 </body>
 </html>

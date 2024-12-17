@@ -5,8 +5,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Courses</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
+<table>
+    <tr>
+        <td>
+
 
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
@@ -85,7 +90,9 @@
     }
 
 %>
-
+        </td>
+    </tr>
+</table>
 </body>
 </html>
 

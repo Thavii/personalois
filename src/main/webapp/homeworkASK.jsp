@@ -5,9 +5,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Insert A Course</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
-
+<table>
+    <tr>
+        <td>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
@@ -86,6 +89,8 @@
 
 <br>
 <a href="index.jsp"><b>Back to the Main Menu</b></a>
-
+</td>
+</tr>
+</table>
 <body>
 </html>

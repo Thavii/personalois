@@ -6,8 +6,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Homework List</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
+<table>
+    <tr>
+        <td>
 <h1>Homeworks for the Selected Student</h1>
 
 <%
@@ -76,6 +80,8 @@
 
 <br>
 <a href="index.jsp"><b>Back to the Main Menu</b></a>
-
+        </td>
+    </tr>
+</table>
 </body>
 </html>

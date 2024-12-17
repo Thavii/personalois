@@ -6,8 +6,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <title>Delete Homework</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
+<table>
+  <tr>
+    <td>
 <%
   String homeworkId = request.getParameter("homework_id");
 
@@ -48,5 +52,8 @@
 
 <br>
 <a href="homework.jsp"><b>Back to Homeworks</b></a>
+    </td>
+  </tr>
+</table>
 </body>
 </html>

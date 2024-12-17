@@ -1,29 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
-
-<style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    table {
-        border-collapse: collapse;
-        width: 700px;
-    }
-    td {
-        border: 0px solid #000;
-        text-align: left;
-        padding: 8px;
-    }
-</style>
-
-
-
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 <head>
     <meta charset="UTF-8">
 
@@ -49,8 +27,6 @@
             <br><br>Here you can see all the inserted Students and delete them if needed.
             <br> To delete a student the course-student relationship has to be deleted before
         <li><a href="studentDEL.jsp">Student</a>
-<%--        <br><br>Here you can see all the inserted Exams.
-        <li><a href="exam.jsp">Exam</a> --%>
     </ul>
 
 
@@ -65,8 +41,6 @@
         <li><a href="homeworkINSERT.jsp">Insert Homework</a>
             <br><br>Here you can insert NEW Students.
         <li><a href="studentINSERT.jsp">Insert Student</a>
-<%--            <br><br>Here you can insert NEW Exams
-        <li><a href="examINSERT.jsp">Insert Exam</a> --%>
         <br><br>Here you can insert which student studies in which course.
         <li><a href="course_studentINSERT.jsp">Insert Course Students</a>
     </ul>

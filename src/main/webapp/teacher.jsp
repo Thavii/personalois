@@ -1,13 +1,16 @@
-homework.jsp<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Courses</title>
+    <title>Lecturers</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
-
+<table>
+    <tr>
+        <td>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
@@ -38,16 +41,16 @@ try {
     // READ DATA
 
     ResultSet resultSet = selectStatement.executeQuery(
-		   		"Select * from teacher;"
+		   		 "SELECT * FROM teacher ORDER BY last_name ASC;"
 		   );
 
         resultSet.beforeFirst();
 
         %> <table border=1>
     <tr>
-        <td bgcolor=eeeeee><b>teacher_id</b></td>
-        <td bgcolor=eeeeee><b>first_name</b></td>
-        <td bgcolor=eeeeee><b>last_name</b></td>
+        <td bgcolor=eeeeee><b>Lecturer ID</b></td>
+        <td bgcolor=eeeeee><b>Lecturer First Name</b></td>
+        <td bgcolor=eeeeee><b>Lecturer Last Name</b></td>
 
 
     </tr>
@@ -87,6 +90,8 @@ try {
 }
 
 %>
-
+        </td>
+    </tr>
+</table>
 <body>
 </html>

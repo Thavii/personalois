@@ -4,16 +4,19 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Insert A Course</title>
+    <title>Insert student courses</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css">
 </head>
 <body>
-
+<table>
+    <tr>
+        <td>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.sql.Statement" %>
 
-<h1>Please Insert a New Course!</h1>
+<h1>Please Insert a Course-Student relationship!</h1>
 
 <form action="http://localhost:8080/personalois_war_exploded/course_studentINSERTed.jsp" method="get">
     <table>
@@ -135,6 +138,8 @@
    <br>
    <input type="submit" value="Submit">
 </form>
-
+        </td>
+    </tr>
+</table>
 <body>
 </html>
