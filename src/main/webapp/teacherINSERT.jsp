@@ -18,7 +18,7 @@
 
 <h1>Please Insert a New Lecturer!</h1>
 
-<form action="http://localhost:8080/personalois_war_exploded/teacherINSERTed.jsp" method="get">
+<form action="${pageContext.request.contextPath}/teacherINSERTed.jsp" method="get">
     <table>
 
         <tr>

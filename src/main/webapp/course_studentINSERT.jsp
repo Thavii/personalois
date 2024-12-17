@@ -18,7 +18,7 @@
 
 <h1>Please Insert a Course-Student relationship!</h1>
 
-<form action="http://localhost:8080/personalois_war_exploded/course_studentINSERTed.jsp" method="get">
+<form action="${pageContext.request.contextPath}/course_studentINSERTed.jsp" method="get">
     <table>
         <tr>
             <td>Course

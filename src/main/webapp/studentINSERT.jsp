@@ -18,7 +18,7 @@
 
 <h1>Please Insert a New Homework!</h1>
 
-<form action="http://localhost:8080/personalois_war_exploded/studentINSERTed.jsp" method="get">
+<form action="${pageContext.request.contextPath}/studentINSERTed.jsp" method="get">
     <table>
         <tr>
             <td>First Name:

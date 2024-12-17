@@ -18,7 +18,7 @@
 
 <h1>Please Insert a New Course!</h1>
 
-<form action="http://localhost:8080/personalois_war_exploded/courseINSERTed.jsp" method="get">
+<form action="${pageContext.request.contextPath}/courseINSERTed.jsp" method="get">
     <table>
         <tr>
             <td>Course Name :

@@ -18,7 +18,7 @@
 
 <h1>Please choose your name!</h1>
 
-<form action="http://localhost:8080/personalois_war_exploded/homeworkASKed.jsp" method="get">
+<form action="${pageContext.request.contextPath}/homeworkASKed.jsp" method="get">
     <table>
 
         <tr>
