@@ -21,7 +21,7 @@
 <form action="http://localhost:8080/personalois_war_exploded/courseINSERTed.jsp" method="get">
     <table>
         <tr>
-            <td>Course Name:
+            <td>Course Name :
             <td><input type="text" name="course_name"></td>
         </tr>
 
